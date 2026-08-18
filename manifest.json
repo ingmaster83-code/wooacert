@@ -1,0 +1,16 @@
+{
+  "name": "WooaCert - 증명서 발급 안내",
+  "short_name": "WooaCert",
+  "description": "가족관계증명서·인감증명서 등 자주 필요한 증명서를 어디서 어떻게 발급받는지 정리한 안내 사이트",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#1A1A2E",
+  "theme_color": "#2563EB",
+  "lang": "ko",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "government"],
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
