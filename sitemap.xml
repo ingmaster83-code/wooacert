@@ -69,5 +69,11 @@
   <url><loc>https://wooacert.wooahouse.com/cert/childcare-enrollment-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wooacert.wooahouse.com/cert/adult-guardianship-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wooacert.wooahouse.com/cert/auto-insurance-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/sme-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/small-business-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/venture-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/fine-payment-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/pet-quarantine-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/yellow-fever-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wooacert.wooahouse.com/about.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
