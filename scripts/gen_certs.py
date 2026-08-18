@@ -35,7 +35,7 @@ CERTS = [
         online_desc="정부24(gov.kr) 또는 대법원 전자가족관계등록시스템(efamily.scourt.go.kr)에서 공동인증서·간편인증(카카오·PASS 등)으로 로그인 후 즉시 무료 발급·출력할 수 있습니다.",
         offline_desc="가까운 시·구·읍·면·동 주민센터(전국 어디서나 가능)를 방문해 신분증을 제시하면 발급받을 수 있습니다.",
         fee_online="무료", fee_offline="무료",
-        docs=["신분증(방문 시)", "공동인증서 또는 간편인증(온라인 시)"],
+        docs=["신분증(방문 시)"],
         validity="발급일로부터 통상 3개월 이내 제출을 요구하는 기관이 많음(제출처마다 다름)",
         intro="가족관계증명서는 본인을 기준으로 부모·배우자·자녀 등 가족관계를 증명하는 서류로, 2008년 호주제 폐지 이후 기존 호적등본을 대신하고 있습니다. 상속·보험금 청구·자녀 학교 제출·주택청약 등 본인과 가족관계를 확인해야 하는 거의 모든 행정·금융 절차에서 요구됩니다.",
         notice="'일반증명서'와 '상세증명서' 두 종류가 있습니다. 일반증명서는 현재 혼인 중인 배우자·생존한 자녀만 표시되고, 상세증명서는 이혼한 배우자·사망한 가족까지 모두 표시됩니다. 제출 기관이 요구하는 종류를 미리 확인 후 발급하세요.",
@@ -907,7 +907,7 @@ CERTS = [
         online_desc="국제운전면허증은 실물 카드를 즉석에서 촬영·제작해야 해 온라인 발급을 지원하지 않습니다.",
         offline_desc="전국 운전면허시험장, 주요 경찰서 민원실, 인천·김포·김해공항 내 발급 창구를 방문하면 즉시 발급받을 수 있습니다.",
         fee_online="해당 없음(방문 전용)", fee_offline="8,500원",
-        docs=["여권", "운전면허증", "여권용 사진 1매(공항 발급 시 즉석촬영 가능)", "수수료"],
+        docs=["여권과 운전면허증 모두 지참(신분증 1개가 아니라 둘 다 필수)", "여권용 사진 1매(공항 발급 시 즉석촬영 가능)", "수수료 8,500원(현금 또는 카드)"],
         validity="발급일로부터 1년",
         intro="국제운전면허증은 '도로교통에 관한 협약(제네바 협약)' 가입국에서 국내 면허로 운전할 수 있도록 국가가 발급하는 번역 증명서입니다. 온라인 신청이 불가능해 반드시 본인이 직접 방문해야 하며, 신분증·면허증만 있으면 대부분 5~10분 내로 즉시 발급됩니다.",
         notice="협약 미가입국(예: 일부 국가)에서는 국제운전면허증이 인정되지 않을 수 있으니 여행 전 해당 국가의 인정 여부를 반드시 확인하세요.",
@@ -1582,6 +1582,14 @@ ONLINE_SITES = {
 }
 
 
+def eul_reul(word):
+    """받침 있으면 '을', 없으면 '를' 반환"""
+    last = word.strip()[-1]
+    if "가" <= last <= "힣":
+        return "을" if (ord(last) - ord("가")) % 28 != 0 else "를"
+    return "를"
+
+
 def kakao_naver_style_notice():
     return "이 페이지는 정부기관 공식 절차를 바탕으로 정리한 안내 콘텐츠이며, 실제 발급은 각 공식 사이트 또는 방문 기관에서 진행됩니다. 제도는 수시로 바뀔 수 있으니 중요한 절차는 발급 직전 해당 기관 공지사항으로 다시 확인하세요."
 
@@ -1665,6 +1673,17 @@ def page_head(title, desc, keywords, canonical, root, extra_ld=""):
 """
 
 
+STANDARD_ONLINE_DOCS = [
+    "공동인증서 또는 금융인증서",
+    "간편인증(카카오·PASS·네이버 등, 지원하는 경우)",
+]
+STANDARD_OFFLINE_DOCS = [
+    "신분증(주민등록증·운전면허증·여권 중 1개)",
+]
+# 표준 항목과 중복되어 걸러낼 플레이스홀더 문구
+GENERIC_DOC_PLACEHOLDERS = {"신분증", "신분증(방문 시)", "없음(본인 차량은 로그인 인증만)", "없음(누구나 발급 가능, 익명 열람 지원)", "없음(주소만 알면 발급 가능)", "없음(지번만 알면 발급 가능)", "없음(누구나 발급 가능)"}
+
+
 def gen_cert_page(cert):
     cat_id, cat_name, cat_color, cat_desc = CAT_MAP[cert["cat"]]
     canonical = f"{BASE_URL}/cert/{cert['slug']}.html"
@@ -1695,7 +1714,11 @@ def gen_cert_page(cert):
   }}
   </script>"""
 
-    docs_html = "".join(f"<li>{d}</li>" for d in cert["docs"])
+    extra_docs = [d for d in cert["docs"] if d not in GENERIC_DOC_PLACEHOLDERS]
+    online_docs = list(STANDARD_ONLINE_DOCS) if cert["online"] else []
+    offline_docs = list(STANDARD_OFFLINE_DOCS) + extra_docs
+    online_docs_html = "".join(f"<li>{d}</li>" for d in online_docs)
+    offline_docs_html = "".join(f"<li>{d}</li>" for d in offline_docs)
     uses_html = "".join(f"<li>{u}</li>" for u in cert["uses"])
     tips_html = "".join(f"<li>{t}</li>" for t in cert["tips"])
     faq_html = "".join(
@@ -1749,8 +1772,10 @@ def gen_cert_page(cert):
   <p class="section-title">🏢 방문 발급 방법</p>
   <div class="desc-box">{cert['offline_desc']}</div>
 
-  <p class="section-title">필요서류</p>
-  <ul class="uses-list">{docs_html}</ul>
+  <p class="section-title">📝 발급 준비물</p>
+  {f'<p style="font-size:.85rem;font-weight:600;color:var(--text-light);margin:14px 0 6px;">온라인 발급 시</p><ul class="uses-list">{online_docs_html}</ul>' if online_docs else ''}
+  <p style="font-size:.85rem;font-weight:600;color:var(--text-light);margin:14px 0 6px;">방문 발급 시</p>
+  <ul class="uses-list">{offline_docs_html}</ul>
 
   <p class="section-title">주요 용도</p>
   <ul class="uses-list">{uses_html}</ul>
@@ -1770,7 +1795,7 @@ def gen_cert_page(cert):
     <h2>자주 묻는 질문</h2>
     {faq_html}
     <details>
-      <summary>이 사이트에서 실제로 {cert['name']}를 발급받을 수 있나요?</summary>
+      <summary>이 사이트에서 실제로 {cert['name']}{eul_reul(cert['name'])} 발급받을 수 있나요?</summary>
       <p>아니요. WooaCert는 발급 방법·절차 안내만 제공하며, 실제 발급은 위에서 안내한 공식 사이트({cert['issuing_org']}) 또는 방문 기관에서 진행하셔야 합니다. {kakao_naver_style_notice()}</p>
     </details>
   </div>
