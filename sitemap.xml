@@ -51,5 +51,23 @@
   <url><loc>https://wooacert.wooahouse.com/cert/transcript-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wooacert.wooahouse.com/cert/degree-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wooacert.wooahouse.com/cert/corporate-register.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/no-homeownership-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/subscription-account-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/registered-rental-housing-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/lease-registration-order-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/revenue-amount-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/financial-statement-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/freelancer-withholding-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/eitc-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/near-poverty-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/multicultural-family-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/parental-leave-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/maternity-leave-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/dependent-registration-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/severe-illness-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/unemployment-benefit-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/childcare-enrollment-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/adult-guardianship-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://wooacert.wooahouse.com/cert/auto-insurance-cert.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://wooacert.wooahouse.com/about.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
