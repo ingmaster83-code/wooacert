@@ -565,6 +565,29 @@ CERTS = [
 ]
 
 
+# slug -> (사이트명, 발급 사이트 URL) — 온라인 발급 CTA 버튼용
+ONLINE_SITES = {
+    "family-relation-cert": ("정부24", "https://www.gov.kr"),
+    "basic-cert": ("정부24", "https://www.gov.kr"),
+    "marriage-cert": ("정부24", "https://www.gov.kr"),
+    "resident-register": ("정부24", "https://www.gov.kr"),
+    "resident-register-brief": ("정부24", "https://www.gov.kr"),
+    "seal-cert": ("정부24", "https://www.gov.kr"),
+    "signature-confirm-cert": ("정부24", "https://www.gov.kr"),
+    "income-cert": ("홈택스", "https://www.hometax.go.kr"),
+    "local-tax-cert": ("위택스", "https://www.wetax.go.kr"),
+    "national-tax-cert": ("홈택스", "https://www.hometax.go.kr"),
+    "health-insurance-cert": ("국민건강보험공단", "https://www.nhis.or.kr"),
+    "pension-cert": ("국민연금공단", "https://www.nps.or.kr"),
+    "employment-insurance-cert": ("고용보험 홈페이지", "https://www.ei.go.kr"),
+    "criminal-record-cert": ("경찰청 범죄경력회보서 발급시스템", "https://crims.police.go.kr"),
+    "military-service-cert": ("병무청", "https://www.mma.go.kr"),
+    "graduation-cert": ("정부24", "https://www.gov.kr"),
+    "real-estate-register": ("인터넷등기소", "https://www.iros.go.kr"),
+    "passport": ("정부24", "https://www.gov.kr"),
+}
+
+
 def kakao_naver_style_notice():
     return "이 페이지는 정부기관 공식 절차를 바탕으로 정리한 안내 콘텐츠이며, 실제 발급은 각 공식 사이트 또는 방문 기관에서 진행됩니다. 제도는 수시로 바뀔 수 있으니 중요한 절차는 발급 직전 해당 기관 공지사항으로 다시 확인하세요."
 
@@ -690,6 +713,13 @@ def gen_cert_page(cert):
     if cert.get("notice"):
         notice_html = f'<div class="notice-box">⚠️ {cert["notice"]}</div>'
 
+    online_cta_html = ""
+    if cert["online"] and cert["slug"] in ONLINE_SITES:
+        site_name, site_url = ONLINE_SITES[cert["slug"]]
+        online_cta_html = f"""<div class="download-trigger-wrap">
+    <a href="{site_url}" class="btn-download-main" style="text-decoration:none;">🔗 {site_name}에서 발급하러 가기</a>
+  </div>"""
+
     body = f"""<div class="form-hero">
   <span class="cat-badge">{cat_name}</span>
   <h1>{cert['emoji']} {cert['name']}</h1>
@@ -710,6 +740,8 @@ def gen_cert_page(cert):
     <div class="info-card"><div class="label">수수료(방문)</div><div class="value">{cert['fee_offline']}</div></div>
   </div>
 
+  {MID_AD}
+
   <p class="section-title">이 서류는 무엇인가요</p>
   <div class="desc-box">{cert['intro']}</div>
 
@@ -717,11 +749,10 @@ def gen_cert_page(cert):
 
   <p class="section-title">💻 온라인 발급 방법</p>
   <div class="desc-box">{cert['online_desc']}</div>
+  {online_cta_html}
 
   <p class="section-title">🏢 방문 발급 방법</p>
   <div class="desc-box">{cert['offline_desc']}</div>
-
-  {MID_AD}
 
   <p class="section-title">필요서류</p>
   <ul class="uses-list">{docs_html}</ul>
@@ -762,7 +793,7 @@ def gen_cert_page(cert):
 </html>
 """
     head = page_head(cert["title"] + " | WooaCert", cert["desc"], cert["keywords"], canonical, "../", extra_ld)
-    html = head + "<body>\n\n" + HEADER_TMPL.format(root="../") + "\n" + MOBILE_AD + "\n\n" + body
+    html = head + "<body>\n\n" + HEADER_TMPL.format(root="../") + "\n" + body
     return html
 
 
