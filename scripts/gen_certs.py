@@ -644,6 +644,7 @@ def page_head(title, desc, keywords, canonical, root, extra_ld=""):
 <head>
 {HEAD_COMMON}
   <meta name="google-site-verification" content="tNM8tmr_6DFold03YSScWz4KEtu5Zo0Fsqc03u5Afms" />
+  <meta name="naver-site-verification" content="d77b9577794856d6f094b47de4a9017bfb9bb8ec" />
   <link rel="icon" href="{root}icons/icon.svg" type="image/svg+xml">
   <title>{title}</title>
   <meta name="description" content="{desc}">
