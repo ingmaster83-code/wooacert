@@ -2325,6 +2325,19 @@ ONLINE_SITES = {
 }
 
 
+
+# 쿠팡 파트너스 (고객 관심 기반 추천) — 콘텐츠·애드센스 아래, 페이지 최하단. 고지 문구는 푸터에 표기.
+COUPANG_HTML = '''
+<div class="coupang-partners" style="margin:36px auto 0;max-width:720px;padding:0 16px 8px;text-align:center;overflow-x:auto;">
+  <script src="https://ads-partners.coupang.com/g.js"></script>
+  <script>
+    new PartnersCoupang.G({"id":980427,"trackingCode":"AF5600192","subId":"cert","template":"carousel","width":"680","height":"140"});
+  </script>
+</div>
+'''
+COUPANG_DISCLOSURE = '    <p style="margin:6px 0 0;font-size:.7rem;opacity:.55;">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>\n'
+COUPANG_DISCLOSURE_INLINE = '<p style="max-width:720px;margin:6px auto 24px;text-align:center;font-size:.7rem;opacity:.55;padding:0 16px;">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>\n'
+
 def eul_reul(word):
     """받침 있으면 '을', 없으면 '를' 반환"""
     last = word.strip()[-1]
@@ -2547,7 +2560,7 @@ def gen_cert_page(cert):
 <aside class="tool-sidebar"></aside>
 </div>
 
-<footer class="footer"></footer>
+{COUPANG_HTML}{COUPANG_DISCLOSURE_INLINE}<footer class="footer"></footer>
 
 <script src="../js/wooahouse-originals-tool.js"></script>
 <script src="../js/wooa-sidebar.js"></script>
